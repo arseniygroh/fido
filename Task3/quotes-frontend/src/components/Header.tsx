@@ -1,6 +1,6 @@
 export default function Header({onOpenModal}: {onOpenModal: () => void}) {
     return (
-        <header className="bg-slate-800 text-white px-6 py-4 shadow-md flex justify-between items-center">
+        <header className="bg-slate-800 text-white px-6 py-4 shadow-md flex justify-between items-center max-[550px]:flex-col gap-y-2">
             <h1 className="text-xl md:text-2xl font-bold tracking-wide">
                 Додаток для фанатів цитат
             </h1>

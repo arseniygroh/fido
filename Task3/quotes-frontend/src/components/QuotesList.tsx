@@ -39,7 +39,7 @@ const QuotesList = ({
               key={quote.id} 
               className="bg-white border border-gray-200 p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200"
             >
-              <p className="text-xl italic text-gray-800 mb-4">"{quote.text}"</p>
+              <p className="text-xl italic text-gray-800 mb-4 break-words">"{quote.text}"</p>
               <strong className="block text-right text-gray-500 text-sm font-semibold">
                 {quote.author}
               </strong>
@@ -67,7 +67,7 @@ const QuotesList = ({
           <p className="text-gray-500">За вашим запитом цитат не знайдено.</p>
         </div>
       )}
-      <div className="flex justify-between items-center mt-8 bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
+      <div className="flex justify-between items-center mt-8">
         <button 
           onClick={() => onPageChange(Math.max(0, page - 1))} 
           disabled={page === 0}
