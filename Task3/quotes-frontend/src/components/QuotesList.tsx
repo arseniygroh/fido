@@ -8,7 +8,8 @@ const QuotesList = ({
   totalPages,
   searchQuery,
   onSearchChange,
-  onPageChange
+  onPageChange,
+  onEditQuote
 }: QuotesListProps) => {
   
   return (
@@ -35,7 +36,9 @@ const QuotesList = ({
             >
               <p style={{ fontStyle: 'italic', margin: '0 0 10px 0' }}>"{quote.text}"</p>
               <strong style={{ display: 'block', textAlign: 'right' }}>© {quote.author}</strong>
-              //TODO: видалення та редагування 
+              <div>
+                <button onClick={() => onEditQuote(quote)} type='button'>Редагувати</button>
+              </div>
             </li>
           ))}
         </ul>

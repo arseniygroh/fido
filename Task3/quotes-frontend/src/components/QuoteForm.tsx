@@ -1,11 +1,22 @@
 import type { QuoteFormProps } from "../types";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function QuoteForm({quote, onSubmit, onCancel}: QuoteFormProps) {
     const [author, setAuthor] = useState(quote ? quote.author : '');
     const [text, setText] = useState(quote ? quote.text : '');
     const [errors, setErrors] = useState<{ author?: string; text?: string }>({});
     
+    useEffect(() => {
+        if (quote) {
+            setAuthor(quote.author);
+            setText(quote.text);
+        } else {
+            setAuthor('');
+            setText('');
+        }
+    }, [quote]);
+
+
     function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         if (!validateForm()) return;

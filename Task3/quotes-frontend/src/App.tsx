@@ -90,6 +90,11 @@ function App() {
     }
   }
 
+  function handleEditQuote(quote: Quote) {
+    setQuoteToEdit(quote);
+    setShowModal(true);
+  }
+
   return (
     <>
       <Modal isOpen={showModal} onClose={handleModalClose}>
@@ -110,6 +115,7 @@ function App() {
         searchQuery={searchQuery}
         onSearchChange={handleSearchChange}
         onPageChange={setPage}
+        onEditQuote={handleEditQuote}
       />
     </>
   );
