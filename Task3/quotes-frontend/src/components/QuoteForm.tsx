@@ -16,7 +16,6 @@ export default function QuoteForm({quote, onSubmit, onCancel}: QuoteFormProps) {
         }
     }, [quote]);
 
-
     function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         if (!validateForm()) return;
@@ -47,9 +46,11 @@ export default function QuoteForm({quote, onSubmit, onCancel}: QuoteFormProps) {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div style={{ marginBottom: '10px' }}>
-                <label htmlFor="author">Автор:</label>
+        <form onSubmit={handleSubmit} className="mt-4 flex flex-col gap-5">
+            <div>
+                <label htmlFor="author" className="block text-sm font-medium text-gray-700 mb-1">
+                    Автор:
+                </label>
                 <input 
                     required 
                     type="text" 
@@ -57,27 +58,49 @@ export default function QuoteForm({quote, onSubmit, onCancel}: QuoteFormProps) {
                     name="author" 
                     value={author} 
                     onChange={(e) => setAuthor(e.target.value)} 
-                    style={{ borderColor: errors.author ? 'red' : 'initial' }}
+                    className={`w-full px-4 py-2 border rounded-lg outline-none transition-all duration-200 ${
+                        errors.author 
+                            ? 'border-red-500 focus:ring-2 focus:ring-red-200' 
+                            : 'border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-100'
+                    }`}
                 />
-                {errors.author && <div style={{ color: 'red', fontSize: '12px' }}>{errors.author}</div>}
+                {errors.author && <div className="text-red-500 text-sm mt-1">{errors.author}</div>}
             </div>
-            <div style={{ marginBottom: '15px' }}>
-                <label htmlFor="text">Цитата:</label>
+
+            <div>
+                <label htmlFor="text" className="block text-sm font-medium text-gray-700 mb-1">
+                    Цитата:
+                </label>
                 <textarea 
                     required 
                     rows={5} 
-                    cols={25} 
                     id="text" 
                     name="text" 
                     value={text} 
                     onChange={(e) => setText(e.target.value)}
-                    style={{ borderColor: errors.text ? 'red' : 'initial' }}
+                    className={`w-full px-4 py-2 border rounded-lg outline-none transition-all duration-200 resize-none ${
+                        errors.text 
+                            ? 'border-red-500 focus:ring-2 focus:ring-red-200' 
+                            : 'border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-100'
+                    }`}
                 />
-                {errors.text && <div style={{ color: 'red', fontSize: '12px' }}>{errors.text}</div>}
+                {errors.text && <div className="text-red-500 text-sm mt-1">{errors.text}</div>}
             </div>
-            <div style={{ display: 'flex', gap: '10px' }}>
-                <button type="submit">{quote ? "Внести зміни" : "Додати цитату"}</button>
-                <button type="button" onClick={onCancel}>Скасувати</button>
+
+            <div className="flex justify-end gap-3 mt-2">
+                <button 
+                    type="button" 
+                    onClick={onCancel}
+                    className="px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 font-medium rounded-lg transition-colors"
+                >
+                    Скасувати
+                </button>
+                <button 
+                    type="submit"
+                    className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors shadow-sm"
+                >
+                    {quote ? "Внести зміни" : "Додати цитату"}
+                </button>
             </div>
         </form>
     );

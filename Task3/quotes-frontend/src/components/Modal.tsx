@@ -29,7 +29,7 @@ export default function Modal({
         <dialog 
             ref={dialogRef}
             onCancel={onClose} 
-            style={{ padding: '20px', borderRadius: '8px' }}
+            className="m-auto w-full max-w-lg p-6 bg-white border-0 rounded-2xl shadow-2xl backdrop:bg-black/60 backdrop:backdrop-blur-sm"
         >
             {children}
         </dialog>,
