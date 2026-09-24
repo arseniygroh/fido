@@ -4,6 +4,7 @@ import QuotesList from "./components/QuotesList";
 import Modal from "./components/Modal";
 import QuoteForm from "./components/QuoteForm";
 import type { Quote, QuoteFormValues, QuotesResponse } from "./types";
+import { Toaster, toast } from "sonner";
 
 const PAGE_SIZE = 10;
 
@@ -48,6 +49,7 @@ function App() {
       }
     } catch (error) {
       console.error('Помилка мережі при завантаженні цитат:', error);
+      toast.error('Помилка мережі при завантаженні цитат');
     } finally {
       setIsLoading(false);
     }
@@ -84,9 +86,13 @@ function App() {
       if (response.ok) {
         handleModalClose(); 
         fetchQuotes();
+        toast.success(quoteToEdit ? 'Цитату успішно оновлено!' : 'Цитату успішно створено!');
+      } else {
+        toast.error('Не вдалося зберегти цитату');
       }
     } catch (error) {
       console.error('Помилка мережі:', error);
+      toast.error('Помилка мережі');
     }
   }
 
@@ -106,14 +112,19 @@ function App() {
 
       if (response.ok) {
         fetchQuotes();
+        toast.success('Цитату успішно видалено!');
+      } else {
+        toast.error('Не вдалося видалити цитату');
       }
     } catch (error) {
       console.error('Помилка мережі при видаленні цитати:', error);
+      toast.error('Помилка мережі при видаленні цитати');
     }
   }
 
   return (
     <>
+      <Toaster richColors position="bottom-right" />
       <Modal isOpen={showModal} onClose={handleModalClose}>
         {showModal && (
           <>
