@@ -32,7 +32,6 @@ export default function Modal({
             style={{ padding: '20px', borderRadius: '8px' }}
         >
             {children}
-            <button onClick={onClose} style={{ marginTop: '10px' }}>Закрити</button>
         </dialog>,
         modalRoot
     );
