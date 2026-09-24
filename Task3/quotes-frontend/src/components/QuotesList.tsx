@@ -1,15 +1,6 @@
 import { useState, useEffect } from 'react';
 
-interface Quote {
-  id: number;
-  author: string;
-  text: string;
-}
-
-interface QuotesResponse {
-  total: number;
-  items: Quote[];
-}
+import type { Quote, QuotesResponse } from '../types';
 
 const PAGE_SIZE = 10;
 
@@ -46,7 +37,7 @@ const QuotesList = () => {
         });
 
         if (debouncedSearchQuery.trim()) {
-            params.append('author', debouncedSearchQuery.trim());
+          params.append('author', debouncedSearchQuery.trim());
         }
 
         const response = await fetch(`http://localhost:8080/quotes?${params.toString()}`);
