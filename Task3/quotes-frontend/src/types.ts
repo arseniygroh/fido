@@ -9,7 +9,7 @@ export interface QuotesResponse {
     items: Quote[];
 }
 
-interface QuoteFormValues {
+export interface QuoteFormValues {
     author: string;
     text: string;
 }

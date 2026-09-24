@@ -4,7 +4,7 @@ import type { Quote, QuotesResponse } from '../types';
 
 const PAGE_SIZE = 10;
 
-const QuotesList = () => {
+const QuotesList = ({refreshTrigger}: {refreshTrigger: number}) => {
   const [quotes, setQuotes] = useState<Quote[]>([]);
   const [total, setTotal] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
@@ -63,7 +63,7 @@ const QuotesList = () => {
     return () => {
       ignore = true;
     };
-  }, [page, debouncedSearchQuery]);
+  }, [page, debouncedSearchQuery, refreshTrigger]);
 
   return (
     <div style={{ maxWidth: '800px', margin: '0 auto', padding: '20px' }}>
