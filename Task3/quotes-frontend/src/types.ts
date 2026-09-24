@@ -19,3 +19,14 @@ export interface QuoteFormProps {
     onSubmit: (data: QuoteFormValues) => void;
     onCancel: () => void;
 }
+
+export interface QuotesListProps {
+    quotes: Quote[];
+    isLoading: boolean;
+    total: number;
+    page: number;
+    totalPages: number;
+    searchQuery: string;
+    onSearchChange: (query: string) => void;
+    onPageChange: (newPage: number) => void;
+}
