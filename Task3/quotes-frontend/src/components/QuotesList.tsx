@@ -9,7 +9,8 @@ const QuotesList = ({
   searchQuery,
   onSearchChange,
   onPageChange,
-  onEditQuote
+  onEditQuote,
+  onDeleteQuote
 }: QuotesListProps) => {
   
   return (
@@ -38,6 +39,7 @@ const QuotesList = ({
               <strong style={{ display: 'block', textAlign: 'right' }}>© {quote.author}</strong>
               <div>
                 <button onClick={() => onEditQuote(quote)} type='button'>Редагувати</button>
+                <button onClick={() => onDeleteQuote(quote.id)} type='button'>Видалити</button>
               </div>
             </li>
           ))}

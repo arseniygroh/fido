@@ -30,4 +30,5 @@ export interface QuotesListProps {
     onSearchChange: (query: string) => void;
     onPageChange: (newPage: number) => void;
     onEditQuote: (quote: Quote) => void;
+    onDeleteQuote: (id: number) => void;
 }

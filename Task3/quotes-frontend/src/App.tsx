@@ -24,7 +24,7 @@ function App() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setDebouncedSearchQuery(searchQuery);
-    }, 500);
+    }, 800);
     return () => clearTimeout(timer);
   }, [searchQuery]);
 
@@ -95,15 +95,36 @@ function App() {
     setShowModal(true);
   }
 
+  async function handleDeleteQuote(id: number) {
+    const confirmDelete = confirm('Ви впевнені, що хочете видалити цю цитату?');
+    if (!confirmDelete) return;
+
+    try {
+      const response = await fetch(`http://localhost:8080/quotes/${id}`, {
+        method: 'DELETE',
+      });
+
+      if (response.ok) {
+        fetchQuotes();
+      }
+    } catch (error) {
+      console.error('Помилка мережі при видаленні цитати:', error);
+    }
+  }
+
   return (
     <>
       <Modal isOpen={showModal} onClose={handleModalClose}>
-        <h2>{quoteToEdit ? "Редагування цитати" : "Створення нової цитати"}</h2>
-        <QuoteForm 
-          quote={quoteToEdit} 
-          onSubmit={handleQuoteSubmit} 
-          onCancel={handleModalClose} 
-        />
+        {showModal && (
+          <>
+            <h2>{quoteToEdit ? "Редагування цитати" : "Створення нової цитати"}</h2>
+            <QuoteForm 
+              quote={quoteToEdit} 
+              onSubmit={handleQuoteSubmit} 
+              onCancel={handleModalClose} 
+            />
+          </>
+        )}
       </Modal>
       <Header onOpenModal={() => setShowModal(true)} />
       <QuotesList 
@@ -116,6 +137,7 @@ function App() {
         onSearchChange={handleSearchChange}
         onPageChange={setPage}
         onEditQuote={handleEditQuote}
+        onDeleteQuote={handleDeleteQuote}
       />
     </>
   );

@@ -28,7 +28,7 @@ export default function QuoteForm({quote, onSubmit, onCancel}: QuoteFormProps) {
         let isValid = true;
 
         if (!author.trim()) {
-            newErrors.author = 'Автор обов\'язковий';
+            newErrors.author = "Автор обов'язковий";
             isValid = false;
         } else if (author.length > 200) {
             newErrors.author = 'Автор не може бути довшим за 200 символів';
@@ -36,7 +36,7 @@ export default function QuoteForm({quote, onSubmit, onCancel}: QuoteFormProps) {
         }
         
         if (!text.trim()) {
-            newErrors.text = 'Цитата обов\'язкова';
+            newErrors.text = "Цитата обов'язкова";
             isValid = false;
         } else if (text.length > 1000) {
             newErrors.text = 'Цитата не може бути довшою за 1000 символів';
